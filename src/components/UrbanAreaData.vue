@@ -2,13 +2,13 @@
   <div v-if="urbanArea">
     <h1>{{ urbanArea.name }}</h1>
     <p>{{ country }}, {{ continent }}</p>
-    <img :src="image">
+    {{ generateChartData }}
     <GChart
     v-if="chartData"
-    type="ComboChart"
+    type="BarChart"
     :data="chartData"
-    :options="chartOptions"
     />
+    <img :src="image">
   </div>
 
 </template>
@@ -29,17 +29,16 @@ export default {
       }
     }
   },
-  methods: {
+  computed: {
     generateChartData(){
       const data = [];
-      for(let name of this.scores){
-        data.push(Object.values(name["name"]));
-      };
-      for(let score of this.scores){
-        data.push(Object.values(score["score_out_of_10"]))
-      };
+      data.push(this.scores.map(heading => heading["name"]));
+      data.push(this.scores.map(score => score["score_out_of_10"]))
       this.chartData = data;
-    }
+    },
+  },
+  methods: {
+
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <h1>Select an urban area</h1>
     <div class="main-container">
       <urban-areas-list :urbanAreas="urbanAreas"></urban-areas-list>
-      <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :score="scores"></urban-area-data>
+      <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
     </div>
   </div>
 </template>
@@ -12,7 +12,6 @@
 import UrbanAreaList from './components/UrbanAreaList.vue';
 import UrbanAreaData from './components/UrbanAreaData.vue';
 import {eventBus} from './main.js';
-import { GChart } from './main.js';
 
 export default {
   name: 'app',
@@ -44,9 +43,8 @@ export default {
           this.country = data["_links"]["ua:countries"][0]["name"];
           this.getImage(data);
           this.getScores(data);
-          generateChartData();
           });
-    });
+      });
   },
   methods: {
     getImage(data){
