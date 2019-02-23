@@ -11,7 +11,8 @@
 <script>
 import UrbanAreaList from './components/UrbanAreaList.vue';
 import UrbanAreaData from './components/UrbanAreaData.vue';
-import { eventBus } from './main.js';
+import {eventBus} from './main.js';
+import { GChart } from './main.js';
 
 export default {
   name: 'app',
@@ -23,8 +24,8 @@ export default {
       country: "",
       image: "",
       scores: ""
-    }
-  },
+      }
+    },
   components: {
     "urban-areas-list": UrbanAreaList,
     "urban-area-data": UrbanAreaData
@@ -41,12 +42,23 @@ export default {
         .then(data => {
           this.continent = data.continent;
           this.country = data["_links"]["ua:countries"][0]["name"];
-          this.image = data["_links"]["ua:images"]["href"];
-          fetch(data["_links"]["ua:scores"]["href"])
-            .then(response => response.json())
-            .then(data => this.scores = data.categories);
+          this.getImage(data);
+          this.getScores(data);
+          generateChartData();
           });
     });
+  },
+  methods: {
+    getImage(data){
+      fetch(data["_links"]["ua:images"]["href"])
+        .then(response => response.json())
+        .then(images => this.image = images.photos[0]["image"]["web"]);
+    },
+    getScores(data){
+      fetch(data["_links"]["ua:scores"]["href"])
+        .then(response => response.json())
+        .then(scores => this.scores = scores.categories);
+    }
   }
 }
 </script>
