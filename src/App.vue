@@ -1,10 +1,12 @@
 <template lang="html">
-  <div class="">
+  <div id="flex-container">
+    <div class="selection-field">
+    <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
     <h1>Select an urban area</h1>
-    <div class="main-container">
       <urban-areas-list :urbanAreas="urbanAreas"></urban-areas-list>
-      <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
     </div>
+
+      <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
   </div>
 </template>
 
@@ -22,7 +24,7 @@ export default {
       continent: "",
       country: "",
       image: "",
-      scores: ""
+      scores: []
       }
     },
   components: {
@@ -62,4 +64,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#flex-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'Nova Round', cursive;
+}
+
+.selection-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 80px;
+  width: 90%;
+  background-color: lightgrey;
+  /* border: 3px solid; */
+}
+
 </style>

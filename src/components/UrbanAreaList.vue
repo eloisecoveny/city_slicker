@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="flex-container">
     <select v-on:change="handleChange" v-model="selectedUrbanAreaIndex">
       <option v-for="(urbanArea, index) in urbanAreas" :value="index">{{ urbanArea.name }}</option>
     </select>
@@ -26,4 +26,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+select {
+  margin: 30px;
+  background-color: White;
+}
+
+select:active, select:hover {
+  outline-color: none;
+}
+
 </style>

@@ -1,13 +1,18 @@
 <template lang="html">
-  <div v-if="urbanArea">
-    <h1>{{ urbanArea.name }}</h1>
-    <p>{{ country }}, {{ continent }}</p>
+  <div id="flex-container" v-if="urbanArea">
+    <div class="title">
+      <h2>{{ urbanArea.name }}</h2>
+      <p>{{ country }}, {{ continent }}</p>
+    </div>
     {{ generateChartData }}
-    <GChart
-    v-if="chartData"
-    type="BarChart"
-    :data="chartData"
-    />
+    <div class="gchart">
+      <GChart
+      v-if="chartData"
+      type="BarChart"
+      :data="chartData"
+      :options="chartOptions"
+      />
+    </div>
     <img :src="image">
   </div>
 
@@ -26,6 +31,11 @@ export default {
     return {
       chartData: [],
       chartOptions: {
+        width: 1000,
+        height: 450,
+        chartArea: {
+          height: 400
+          }
       }
     }
   },
@@ -37,6 +47,8 @@ export default {
       this.chartData = data;
     },
   },
+  watch: {
+  },
   methods: {
 
   }
@@ -44,4 +56,43 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#flex-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gchart {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  width: 80%;
+  height: auto;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-family: 'Nanum Gothic', sans-serif;
+  padding: 5px;
+  margin-top: 70px;
+  margin-bottom: 0px;
+  font-size: 35px;
+}
+
+p {
+  font-family: 'Nanum Gothic', sans-serif;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 </style>
