@@ -2,6 +2,7 @@
   <div id="flex-container">
     <div class="selection-field">
     <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
+
     <h1>Select an urban area</h1>
       <urban-areas-list :urbanAreas="urbanAreas"></urban-areas-list>
     </div>
@@ -24,7 +25,8 @@ export default {
       continent: "",
       country: "",
       image: "",
-      scores: []
+      scores: [],
+      colors: []
       }
     },
   components: {

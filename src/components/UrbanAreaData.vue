@@ -33,15 +33,17 @@ export default {
       chartOptions: {
         width: 1000,
         height: 450,
+        colors: ["#f3c32c", "#f3d630", "#f4eb33", "#d2ed31", "#7adc29", "#36cc24", "#19ad51", "#0d6999", "#051fa5", "#150e78", "#3d14a4", "#5c14a1", "#88149f", "#b9117d", "#d10d54", "#e70c26", "#f1351b"],
         chartArea: {
           height: 400
-          }
+        }
       }
     }
   },
   computed: {
     generateChartData(){
       const data = [];
+      const colors = [];
       data.push(this.scores.map(heading => heading["name"]));
       data.push(this.scores.map(score => score["score_out_of_10"]))
       this.chartData = data;

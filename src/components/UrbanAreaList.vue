@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="flex-container">
     <select v-on:change="handleChange" v-model="selectedUrbanAreaIndex">
+      <option disabled value="">Select an urban area</option>
       <option v-for="(urbanArea, index) in urbanAreas" :value="index">{{ urbanArea.name }}</option>
     </select>
   </div>
@@ -35,6 +36,7 @@ export default {
 select {
   margin: 30px;
   background-color: White;
+  color: black;
 }
 
 select:active, select:hover {
