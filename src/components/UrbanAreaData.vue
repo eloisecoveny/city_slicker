@@ -7,7 +7,6 @@
     {{ generateChartData }}
     <div class="gchart">
       <GChart
-      v-if="chartData"
       type="BarChart"
       :data="chartData"
       :options="chartOptions"
@@ -71,7 +70,7 @@ export default {
 }
 
 img {
-  width: 80%;
+  width: 70%;
   height: auto;
   margin-top: 5rem;
   margin-bottom: 2rem;
