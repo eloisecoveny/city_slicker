@@ -77,7 +77,7 @@ img {
 }
 
 h2 {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Nova Round', cursive;
   padding: 5px;
   margin-top: 70px;
   margin-bottom: 0px;

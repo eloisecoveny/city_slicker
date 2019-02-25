@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="flex-container">
     <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
-    <h1>City Slicker</h1>
+    <h1 v-on:click="selectedUrbanArea = null, selectedCategoryIndex = null">City Slicker</h1>
     <nav>
       <div id="urban-areas-list">
         <urban-areas-list :urbanAreas="urbanAreas"></urban-areas-list>
@@ -11,6 +11,9 @@
         <category-list :categories="categories"></category-list>
       </div>
     </nav>
+    <div v-if="!selectedUrbanArea && !selectedCategoryIndex">
+      <img src="https://cdnb.artstation.com/p/media_assets/images/images/000/204/827/large/NEWCITIY01-S.jpg?1522210659" alt="cartoon-city-scape">
+    </div>
 
     <div id="urban-area-data">
       <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
@@ -89,13 +92,13 @@ export default {
         .then(response => response.json())
         .then(values => {
           let score = values.categories[categoryIndex]["score_out_of_10"]
-          scores.push({name: urbanArea.name, score: score})
+          scores.push({"name": urbanArea.name, "score": score})
         });
       }, [0]);
       this.categoryScores = scores;
     },
     getTopTen(){
-      let sortedScores = this.categoryScores.sort((a, b) => {
+      const sortedScores = this.categoryScores.sort((a, b) => {
         return b.score - a.score;
       });
       this.categoryTopTen = sortedScores.slice(0, 10);
@@ -117,10 +120,17 @@ nav {
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  padding: 10px;
+  background-color: rgb(255, 231, 216);
 }
 
 h1 {
   font-family: 'Nova Round', cursive;
+  font-size: 50px;
+}
+
+img {
+  object-fit: cover;
 }
 
 </style>
