@@ -69,7 +69,6 @@ export default {
     eventBus.$on('selected-category', (categoryIndex) => {
       this.selectedCategoryIndex = categoryIndex;
       this.getCategoryScores(categoryIndex);
-      this.getTopTen();
     })
   },
   methods: {
@@ -85,7 +84,27 @@ export default {
     },
     getCategoryScores(categoryIndex){
       const scores = []
-      this.urbanAreas.forEach(urbanArea => {
+
+      // const urls = this.urbanAreas.map(area => area.href);
+      // const requests = urls.map(url => fetch(url).then(response => response.json()));
+      //
+      // Promise.all(requests).then(responses => {
+      //   const scoreUrls = responses.map(response => response["_links"]["ua:scores"]["href"]);
+      //
+      //   const scoreRequests = scoreUrls.map(url => fetch(url).then(response => response.json()));
+      //
+      //   Promise.all(scoreRequests).then(scoreResponses => {
+      //     scoreResponses.forEach(value => {
+      //       let score = value.categories[categoryIndex]["score_out_of_10"];
+      //       let name = value.summary.split(" ")[1];
+      //       scores.push({"name": name, "score": score});
+      //     })
+      //   });
+      //   this.categoryScores = scores;
+      //   this.getTopTen();
+      // });
+
+      this.urbanAreas.forEach((urbanArea) => {
         fetch(urbanArea["href"])
         .then(response => response.json())
         .then(data => fetch(data["_links"]["ua:scores"]["href"]))
