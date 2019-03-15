@@ -15,7 +15,7 @@ export default {
   props: ['urbanAreas'],
   data() {
     return {
-      selectedUrbanAreaIndex: null
+      selectedUrbanAreaIndex: ""
     }
   },
   methods: {

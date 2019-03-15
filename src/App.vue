@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="flex-container">
+    <title>City Slicker</title>
     <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
     <h1 v-on:click="selectedUrbanArea = null, selectedCategoryIndex = null">City Slicker</h1>
     <nav>
@@ -82,9 +83,8 @@ export default {
       .then(response => response.json())
       .then(scores => this.scores = scores.categories);
     },
-    getCategoryScores(categoryIndex){
+    getCategoryScores(categoryIndex) {
       const scores = []
-
       // const urls = this.urbanAreas.map(area => area.href);
       // const requests = urls.map(url => fetch(url).then(response => response.json()));
       //
@@ -112,9 +112,12 @@ export default {
         .then(values => {
           let score = values.categories[categoryIndex]["score_out_of_10"]
           scores.push({"name": urbanArea.name, "score": score})
+        }).then(() => {
+          this.categoryScores = scores;
+          this.getTopTen();
         });
       }, [0]);
-      this.categoryScores = scores;
+
     },
     getTopTen(){
       const sortedScores = this.categoryScores.sort((a, b) => {

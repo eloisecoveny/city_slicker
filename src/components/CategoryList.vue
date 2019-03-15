@@ -15,7 +15,7 @@ export default {
   props: ['categories'],
   data() {
     return {
-      selectedCategoryIndex: null
+      selectedCategoryIndex: ""
     }
   },
   methods: {
