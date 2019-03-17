@@ -11,9 +11,11 @@ The app provides a drop-down list of cities and a drop-down list of each categor
 ## Screen grabs
 
 ![Homepage](./ScreenGrabs/Homepage.png)
+_Homepage_
 
 ![Selected_City](./ScreenGrabs/Glasgow_Data01.png)
 ![Selected_City](./ScreenGrabs/Glasgow_Data02.png)
+_Selected city data_
 
 ## Build Setup
 
