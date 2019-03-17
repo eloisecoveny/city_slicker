@@ -1,6 +1,5 @@
 <template lang="html">
   <div id="flex-container">
-    <title>City Slicker</title>
     <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
     <h1 v-on:click="selectedUrbanArea = null, selectedCategoryIndex = null">City Slicker</h1>
     <nav>
