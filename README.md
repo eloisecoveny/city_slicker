@@ -1,4 +1,10 @@
-# urban_data_app2
+# City Slicker
+**Duration: weekend**
+
+## The Project
+
+[Project Brief](https://gist.github.com/futuresocks/031986766572aaecdbaffc17adf495f8)
+
 
 > A Vue.js project
 
