@@ -1,5 +1,5 @@
 # City Slicker
-**Individual Project**
+**Individual Project: JavaScript, Vue.js**
 
 ## The Project
 City Slicker is a JavaScript Vue application using an [external API](https://developers.teleport.org/api/reference/) and Google Charts to visually display statistics comparing quality of life data of 266 cities worldwide, to help assist people find the cities that best match their needs.
