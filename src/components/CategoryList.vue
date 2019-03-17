@@ -44,6 +44,7 @@ select {
   margin: 30px;
   background-color: White;
   color: black;
+  cursor: pointer;
 }
 
 select:active, select:hover {

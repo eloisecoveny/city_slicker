@@ -172,6 +172,7 @@ nav {
 h1 {
   font-family: 'Nova Round', cursive;
   font-size: 50px;
+  cursor: pointer;
 }
 
 img {
