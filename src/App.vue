@@ -65,6 +65,26 @@ export default {
 
     eventBus.$on('selected-urban-area', (urbanArea) => {
       this.selectedUrbanArea = urbanArea;
+      this.fetchData();
+    });
+
+    eventBus.$on('selected-category', (categoryIndex) => {
+      this.selectedCategory = this.categories[categoryIndex]
+      this.selectedCategoryIndex = categoryIndex;
+      this.getCategoryScores(categoryIndex);
+      this.selectedUrbanArea = ""
+    });
+
+    eventBus.$on('city-selected', (cityName) => {
+      let city = this.urbanAreas.filter(city => {
+        return city.name === cityName
+      })
+      this.selectedUrbanArea = city[0];
+      this.fetchData();
+    })
+  },
+  methods: {
+    fetchData(){
       fetch(this.selectedUrbanArea["href"])
       .then(response => response.json())
       .then(data => {
@@ -75,16 +95,7 @@ export default {
         this.selectedCategory = ""
         this.categoryTopTen = []
       });
-    });
-
-    eventBus.$on('selected-category', (categoryIndex) => {
-      this.selectedCategory = this.categories[categoryIndex]
-      this.selectedCategoryIndex = categoryIndex;
-      this.getCategoryScores(categoryIndex);
-      this.selectedUrbanArea = ""
-    })
-  },
-  methods: {
+    },
     getImage(data){
       fetch(data["_links"]["ua:images"]["href"])
       .then(response => response.json())
@@ -123,9 +134,9 @@ export default {
         .then(response => response.json())
         .then(values => {
           let score = values.categories[categoryIndex]["score_out_of_10"]
-          scores.push({"name": urbanArea.name, "score": score})
+          scores.push({"name": urbanArea.name, "score": score.toFixed(2)})
         }).then(() => {
-          this.categoryScores = scores;
+          this.categoryScores = scores
           this.getTopTen();
         });
       }, [0]);
