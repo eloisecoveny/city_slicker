@@ -1,7 +1,10 @@
 <template lang="html">
   <div id="flex-container">
     <link href="https://fonts.googleapis.com/css?family=Nova+Round|Nanum+Gothic" rel="stylesheet">
-    <h1 v-on:click="selectedUrbanArea = null, selectedCategoryIndex = null">City Slicker</h1>
+    <h1 v-on:click="
+      selectedUrbanArea = '',
+      selectedCategoryIndex = null,
+      selectedCategory = ''">City Slicker</h1>
     <nav>
       <div id="urban-areas-list">
         <urban-areas-list :urbanAreas="urbanAreas" :selectedCategory="selectedCategory"></urban-areas-list>
