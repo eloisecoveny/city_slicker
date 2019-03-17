@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="flex-container">
     <select v-on:change="handleChange" v-model="selectedUrbanAreaIndex">
-      <option disabled value="">Select an urban area</option>
+      <option disabled value="">Select a city</option>
       <option v-for="(urbanArea, index) in urbanAreas" :value="index">{{ urbanArea.name }}</option>
     </select>
   </div>
@@ -12,10 +12,17 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'urban-areas-list',
-  props: ['urbanAreas'],
+  props: ['urbanAreas', 'selectedCategory'],
   data() {
     return {
       selectedUrbanAreaIndex: ""
+    }
+  },
+  watch: {
+    selectedCategory: function(category){
+      if(category !== ""){
+        this.selectedUrbanAreaIndex = ""
+      }
     }
   },
   methods: {

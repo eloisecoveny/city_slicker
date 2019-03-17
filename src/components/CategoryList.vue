@@ -12,10 +12,17 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'category-list',
-  props: ['categories'],
+  props: ['categories', 'selectedUrbanArea'],
   data() {
     return {
       selectedCategoryIndex: ""
+    }
+  },
+  watch: {
+    selectedUrbanArea: function(urbanArea){
+      if(urbanArea !== ""){
+        this.selectedCategoryIndex = ""
+      }
     }
   },
   methods: {

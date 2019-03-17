@@ -5,19 +5,24 @@
     <h1 v-on:click="selectedUrbanArea = null, selectedCategoryIndex = null">City Slicker</h1>
     <nav>
       <div id="urban-areas-list">
-        <urban-areas-list :urbanAreas="urbanAreas"></urban-areas-list>
+        <urban-areas-list :urbanAreas="urbanAreas" :selectedCategory="selectedCategory"></urban-areas-list>
       </div>
 
       <div id="category-list">
-        <category-list :categories="categories"></category-list>
+        <category-list :categories="categories" :selectedUrbanArea="selectedUrbanArea"></category-list>
       </div>
     </nav>
-    <div v-if="!selectedUrbanArea && !selectedCategoryIndex">
+
+    <div v-if="(!selectedUrbanArea && !selectedCategoryIndex) && !selectedCategory">
       <img src="https://cdnb.artstation.com/p/media_assets/images/images/000/204/827/large/NEWCITIY01-S.jpg?1522210659" alt="cartoon-city-scape">
     </div>
 
     <div id="urban-area-data">
-      <urban-area-data :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
+      <urban-area-data v-if="!selectedCategory" :urbanArea="selectedUrbanArea" :continent="continent" :country="country" :image="image" :scores="scores"></urban-area-data>
+    </div>
+
+    <div id="category-top-ten">
+      <category-top-ten v-if="selectedCategory" :topTen="categoryTopTen" :selectedCategory="selectedCategory" :urbanAreas="urbanAreas"></category-top-ten>
     </div>
 
   </div>
@@ -27,6 +32,7 @@
 import UrbanAreaList from './components/UrbanAreaList.vue';
 import UrbanAreaData from './components/UrbanAreaData.vue';
 import CategoryList from './components/CategoryList.vue';
+import CategoryTopTen from './components/CategoryTopTen.vue'
 import {eventBus} from './main.js';
 
 export default {
@@ -34,11 +40,12 @@ export default {
   data(){
     return {
       urbanAreas: [],
-      selectedUrbanArea: null,
+      selectedUrbanArea: "",
       continent: "",
       country: "",
       image: "",
       scores: [],
+      selectedCategory: "",
       selectedCategoryIndex: null,
       categories: ["Housing", "Cost of Living", "Startups", "Venture Capital", "Travel Connectivity", "Commute", "Business Freedom", "Safety", "Healthcare", "Education", "Environmental Quality", "Economy", "Taxation", "Internet Access", "Leisure & Culture", "Tolerance", "Outdoors"],
       categoryTopTen: [],
@@ -48,7 +55,8 @@ export default {
   components: {
     "urban-areas-list": UrbanAreaList,
     "urban-area-data": UrbanAreaData,
-    "category-list": CategoryList
+    "category-list": CategoryList,
+    "category-top-ten": CategoryTopTen
   },
   mounted(){
     fetch("https://api.teleport.org/api/urban_areas/")
@@ -64,12 +72,16 @@ export default {
         this.country = data["_links"]["ua:countries"][0]["name"];
         this.getImage(data);
         this.getScores(data);
+        this.selectedCategory = ""
+        this.categoryTopTen = []
       });
     });
 
     eventBus.$on('selected-category', (categoryIndex) => {
+      this.selectedCategory = this.categories[categoryIndex]
       this.selectedCategoryIndex = categoryIndex;
       this.getCategoryScores(categoryIndex);
+      this.selectedUrbanArea = ""
     })
   },
   methods: {

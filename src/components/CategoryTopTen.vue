@@ -1,4 +1,8 @@
 <template lang="html">
+  <div id="flex-container" v-if="topTen">
+    <h1>Category top ten</h1>
+    <p>{{ selectedCategory }}</p>
+  </div>
 
 </template>
 
@@ -7,7 +11,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'category-top-ten',
-  props: ['categoryTopTen']
+  props: ['topTen', 'selectedCategory','urbanAreas']
 }
 </script>
 
