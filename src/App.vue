@@ -167,18 +167,43 @@ nav {
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   background-color: rgb(255, 231, 216);
 }
 
 h1 {
   font-family: 'Nova Round', cursive;
-  font-size: 50px;
+  font-size: 3em;
   cursor: pointer;
+  padding: 0;
+}
+
+urban-areas-list, category-list {
+  width: inherit;
 }
 
 img {
-  object-fit: cover;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media all and (max-width: 1050px) {
+  h1 {
+    font-size: 3em;
+  }
+}
+
+@media all and (max-width: 1000px){
+  h1 {
+    font-size: 3em;
+  }
+}
+
+@media all and (max-width: 700px){
+  h1 {
+    font-size: 2em;
+  }
 }
 
 </style>
