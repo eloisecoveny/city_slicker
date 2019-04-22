@@ -95,5 +95,23 @@ p {
   flex-direction: column;
   align-items: center;
 }
+/* 
+@media all and (max-width: 1050px) {
+  GChart[width=1000] {
+    width: 1000px;
+  }
+}
+
+@media all and (max-width: 1000px){
+  GChart[width=1000] {
+    width: 500px;
+  }
+}
+
+@media all and (max-width: 700px){
+  GChart[width=1000] {
+    width: 300px;
+  }
+} */
 
 </style>
