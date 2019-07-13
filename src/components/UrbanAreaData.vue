@@ -81,7 +81,7 @@ h2 {
   padding: 5px;
   margin-top: 70px;
   margin-bottom: 0px;
-  font-size: 35px;
+  font-size: 2em;
 }
 
 p {
@@ -95,7 +95,7 @@ p {
   flex-direction: column;
   align-items: center;
 }
-/* 
+
 @media all and (max-width: 1050px) {
   GChart[width=1000] {
     width: 1000px;
@@ -112,6 +112,6 @@ p {
   GChart[width=1000] {
     width: 300px;
   }
-} */
+}
 
 </style>
